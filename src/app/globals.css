@@ -100,9 +100,13 @@ button {
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: #1d3557;
+.provider-link {
+  color: #4f5f75;
+  text-decoration: none;
+}
+
+.provider-link:hover {
+  color: #1f3a64;
 }
 
 .nav-right {
@@ -114,26 +118,28 @@ button {
   color: #64748b;
 }
 
-.nav-right button {
-  border: none;
-  border-radius: 7px;
-
-  padding: 11px 20px;
-
-  background: #1d3557;
-  color: #ffffff;
-
-  font-size: 13px;
+.register-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #19345d;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 8px;
   font-weight: 600;
-
-  transition: 0.2s ease;
 }
 
-.nav-right button:hover {
-  background: #122746;
+.register-btn:hover {
+  opacity: 0.9;
 }
 
+.provider-link {
+  text-decoration: none;
+  color: #475569;
+}
 
+.provider-link:hover {
+  color: #19345d;
+}
 /* =========================
    HERO
 ========================= */
@@ -189,53 +195,91 @@ button {
   color: #b3bfd1;
 }
 
+/* =========================
+   HERO LOCATION SELECT
+========================= */
+
+.search-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-location select {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #19345d;
+  font-size: 16px;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.search-location select option {
+  color: #19345d;
+}
+
+.location-icon {
+  font-size: 18px;
+}
+
+/* =========================
+   SEARCH
+========================= */
 
 /* =========================
    SEARCH
 ========================= */
 
 .search-box {
-  width: 700px;
-  height: 58px;
+  width: 875px;
+  max-width: 100%;
+  height: 72px;
 
   margin: 27px auto 0;
-  padding: 5px;
+  padding: 6px;
 
   display: flex;
   align-items: center;
 
   background: #ffffff;
-
-  border-radius: 8px;
+  border-radius: 10px;
 }
+
+/* Service */
 
 .search-service {
   height: 100%;
   flex: 1;
 
+  min-width: 0;
+
   display: flex;
   align-items: center;
 
-  padding-left: 16px;
+  padding: 0 18px;
 
   border-right: 1px solid #e5e7eb;
 }
 
 .search-icon {
+  flex-shrink: 0;
+
   margin-right: 10px;
 
   color: #64748b;
 
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .search-service input {
   width: 100%;
+  min-width: 0;
 
   border: none;
   outline: none;
 
-  font-size: 13px;
+  font-size: 15px;
 
   color: #334155;
 }
@@ -244,57 +288,75 @@ button {
   color: #64748b;
 }
 
+/* Location */
+
 .search-location {
-  width: 165px;
+  width: 250px;
+  flex-shrink: 0;
+
+  height: 100%;
 
   display: flex;
   align-items: center;
-  gap: 8px;
 
-  padding-left: 15px;
+  gap: 9px;
+
+  padding: 0 14px;
+
+  color: #334155;
+}
+
+.location-icon {
+  flex-shrink: 0;
+
+  font-size: 17px;
+
+  color: #19345d;
+}
+
+.search-location select {
+  width: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
 
   color: #334155;
 
-  font-size: 12px;
+  font-size: 14px;
+
+  cursor: pointer;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Search button */
+
 .search-button {
-  width: 105px;
-  height: 46px;
+  width: 130px;
+  height: 58px;
+
+  flex-shrink: 0;
 
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
 
   background: #12b981;
   color: #ffffff;
 
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 
-  transition: 0.2s ease;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
 }
 
 .search-button:hover {
   background: #0da574;
-}
-
-
-/* Hero trust */
-
-.hero-trust {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-
-  margin-top: 17px;
-
-  font-size: 10px;
-
-  color: #aebacd;
-}
-
-.hero-trust span::first-letter {
-  color: #12b981;
 }
 
 
@@ -1524,4 +1586,145 @@ button {
     font-size: 29px;
   }
 
+}
+/* =========================
+   REGISTER PAGE
+========================= */
+
+.register-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 70px 20px;
+}
+
+.register-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 45px;
+  border-radius: 16px;
+  border: 1px solid #e1e6ed;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.register-header .section-label {
+  display: block;
+  color: #10b981;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.register-header h1 {
+  color: #19345d;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.register-header p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #19345d;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d6dce5;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #10b981;
+}
+
+.register-submit {
+  margin-top: 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #10b981;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-submit:hover {
+  opacity: 0.9;
+}
+/* =========================/* =========================
+   SERVICES PAGE
+========================= */
+
+.services-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 80px 20px;
+}
+
+.services-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.services-container .section-label {
+  color: #10b981;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+}
+
+.services-container h1 {
+  color: #19345d;
+  font-size: 42px;
+  margin: 12px 0;
+}
+
+.services-subtitle {
+  color: #64748b;
+  font-size: 17px;
+}
+
+.search-result-box {
+  margin-top: 40px;
+  background: white;
+  border: 1px solid #e1e6ed;
+  border-radius: 14px;
+  padding: 35px;
+}
+
+.search-result-box h2 {
+  color: #19345d;
+  margin-bottom: 10px;
+}
+
+.search-result-box p {
+  color: #64748b;
 }
