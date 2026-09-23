@@ -1728,3 +1728,449 @@ button {
 .search-result-box p {
   color: #64748b;
 }
+
+/* =========================================
+   PROVIDER REGISTRATION
+========================================= */
+
+.provider-page {
+  min-height: 100vh;
+  background: #f6f7f9;
+}
+
+/* Hero */
+
+.provider-hero {
+  background: #1d3157;
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 20px 55px;
+}
+
+.provider-hero-label {
+  display: block;
+  color: #51d5ad;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.provider-hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.provider-hero p {
+  max-width: 650px;
+  margin: 10px auto 0;
+  color: #b9c5d7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* Form section */
+
+.provider-form-section {
+  padding: 0 20px 60px;
+}
+
+.provider-form-container {
+  max-width: 950px;
+  margin: -18px auto 0;
+  position: relative;
+  z-index: 2;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 22px 28px 20px;
+
+  box-shadow: 0 8px 25px rgba(23, 41, 77, 0.08);
+}
+
+
+/* Header */
+
+.provider-form-header {
+  margin-bottom: 16px;
+}
+
+.provider-form-header h2 {
+  color: #17294d;
+  font-size: 16px;
+  margin: 0;
+}
+
+.provider-form-header p {
+  margin-top: 4px;
+  color: #697386;
+  font-size: 11px;
+}
+
+
+/* Success */
+
+.provider-success {
+  margin-bottom: 15px;
+  padding: 12px 15px;
+
+  border-radius: 7px;
+
+  background: #eaf8f3;
+  color: #087f5b;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* Form grid */
+
+.provider-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 20px;
+  row-gap: 12px;
+}
+
+
+/* Field */
+
+.provider-field {
+  min-width: 0;
+}
+
+.provider-field label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #17294d;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.provider-field label span {
+  color: #ef4444;
+}
+
+
+/* Inputs */
+
+.provider-field input,
+.provider-field select,
+.provider-field textarea {
+  width: 100%;
+
+  border: 1px solid #dce2e9;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #334155;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.provider-field input,
+.provider-field select {
+  height: 37px;
+  padding: 0 11px;
+}
+
+.provider-field textarea {
+  height: 88px;
+  resize: vertical;
+  padding: 10px 11px;
+}
+
+.provider-field input:focus,
+.provider-field select:focus,
+.provider-field textarea:focus {
+  border-color: #12b981;
+
+  box-shadow: 0 0 0 2px rgba(18, 185, 129, 0.08);
+}
+
+
+/* Input with icon */
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon > span {
+  position: absolute;
+
+  left: 11px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  z-index: 1;
+}
+
+.input-with-icon input,
+.input-with-icon select {
+  padding-left: 35px;
+}
+
+
+/* Profile image */
+
+.profile-image-area {
+  display: flex;
+  align-items: stretch;
+
+  gap: 8px;
+}
+
+.image-upload-box {
+  width: 185px;
+  height: 86px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed #cbd5e1;
+
+  border-radius: 7px;
+
+  background: #f8fafc;
+
+  cursor: pointer;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+.image-upload-box:hover {
+  border-color: #12b981;
+  background: #f3fbf8;
+}
+
+.upload-icon {
+  font-size: 22px;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.image-upload-box strong {
+  color: #334155;
+  font-size: 10px;
+}
+
+.image-upload-box small {
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 8px;
+}
+
+
+/* Image preview */
+
+.profile-preview,
+.profile-placeholder {
+  width: 92px;
+  height: 86px;
+
+  border-radius: 7px;
+
+  object-fit: cover;
+}
+
+.profile-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f4f8;
+
+  font-size: 30px;
+}
+
+
+/* Description */
+
+.description-wrapper {
+  position: relative;
+}
+
+.character-count {
+  position: absolute;
+
+  right: 10px;
+  bottom: 7px;
+
+  color: #64748b;
+
+  font-size: 8px;
+}
+
+
+/* Terms */
+
+.provider-terms {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 2px;
+}
+
+.provider-terms input {
+  width: 16px;
+  height: 16px;
+
+  accent-color: #12b981;
+
+  cursor: pointer;
+}
+
+.provider-terms label {
+  color: #64748b;
+  font-size: 9px;
+}
+
+.provider-terms a {
+  color: #19345d;
+  text-decoration: underline;
+}
+
+
+/* Submit */
+
+.provider-submit {
+  grid-column: 1 / -1;
+
+  height: 38px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #12b981;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  transition: background 0.2s ease;
+}
+
+.provider-submit:hover {
+  background: #0da574;
+}
+
+.provider-submit span {
+  font-size: 17px;
+}
+
+
+/* Review */
+
+.provider-review {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #64748b;
+
+  font-size: 9px;
+
+  text-align: center;
+}
+
+.provider-review span {
+  color: #19345d;
+  font-size: 13px;
+}
+
+/* =========================================
+   PROVIDER REGISTRATION - MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .provider-hero {
+    padding: 35px 18px 45px;
+  }
+
+  .provider-hero h1 {
+    font-size: 26px;
+  }
+
+  .provider-hero p {
+    font-size: 12px;
+  }
+
+  .provider-form-section {
+    padding: 0 12px 40px;
+  }
+
+  .provider-form-container {
+    padding: 20px 16px;
+  }
+
+  .provider-form {
+    grid-template-columns: 1fr;
+  }
+
+  .provider-terms,
+  .provider-submit,
+  .provider-review {
+    grid-column: auto;
+  }
+
+  .profile-image-area {
+    flex-wrap: wrap;
+  }
+
+  .image-upload-box {
+    flex: 1;
+    min-width: 180px;
+  }
+
+}
