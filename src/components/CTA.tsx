@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CTA() {
   return (
     <section className="cta-section">
@@ -25,10 +27,13 @@ export default function CTA() {
 
           </div>
 
-          <button className="cta-button">
+          <Link
+            href="/providers"
+            className="cta-button"
+          >
             Find a Professional
             <span>→</span>
-          </button>
+          </Link>
 
         </div>
 

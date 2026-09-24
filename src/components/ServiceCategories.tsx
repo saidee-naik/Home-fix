@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 
 const services = [
@@ -37,15 +40,46 @@ const services = [
     professionals: "51",
     description: "Furniture, doors & woodwork",
   },
+  {
+    icon: "🧹",
+    name: "Pest Control",
+    professionals: "38",
+    description: "Termite, insects & pest removal",
+  },
+ 
+  
+  {
+    icon: "🔑",
+    name: "Locksmith",
+    professionals: "18",
+    description: "Locks, keys & security services",
+  },
+  {
+    icon: "🌳",
+    name: "Gardening",
+    professionals: "24",
+    description: "Garden maintenance & landscaping",
+  },
+  {
+    icon: "📦",
+    name: "Moving Services",
+    professionals: "21",
+    description: "Packing, shifting & relocation",
+  },
 ];
 
 export default function ServiceCategories() {
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleServices = showAll
+    ? services
+    : services.slice(0, 6);
+
   return (
     <section
       className="services-section"
       id="services"
     >
-
       <div className="container">
 
         <div className="services-header">
@@ -66,16 +100,23 @@ export default function ServiceCategories() {
 
           </div>
 
-          <button className="view-all-button">
-            View All Services
-            <span>→</span>
+          <button
+            className="view-all-button"
+            onClick={() => setShowAll(!showAll)}
+            type="button"
+          >
+            {showAll ? "Show Less" : "View All Services"}
+
+            <span>
+              {showAll ? "↑" : "→"}
+            </span>
           </button>
 
         </div>
 
         <div className="services-grid">
 
-          {services.map((service) => (
+          {visibleServices.map((service) => (
             <ServiceCard
               key={service.name}
               icon={service.icon}
@@ -88,7 +129,6 @@ export default function ServiceCategories() {
         </div>
 
       </div>
-
     </section>
   );
 }

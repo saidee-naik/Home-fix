@@ -1,36 +1,43 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <header className="navbar">
       <div className="container nav-content">
 
-        <a href="#" className="logo">
+        {/* Logo */}
+        <Link href="/" className="logo">
           <div className="logo-box">
             🔧
           </div>
 
           <span>HomeFix</span>
-        </a>
+        </Link>
 
+        {/* Navigation */}
         <nav className="nav-links">
-          <a href="#services" className="active">
+          <Link href="#services" className="active">
             Find Services
-          </a>
+          </Link>
 
-          <a href="#how-it-works">
+          <Link href="#how-it-works">
             How It Works
-          </a>
+          </Link>
 
-          <a href="#trust">
+          <Link href="#trust">
             Trust & Safety
-          </a>
+          </Link>
         </nav>
 
+        {/* Right side */}
         <div className="nav-right">
-          <span>Are you a Provider?</span>
+          <Link href="/provider" className="provider-link">
+            Are you a Provider?
+          </Link>
 
-          <button>
+          <Link href="/register" className="register-btn">
             Register
-          </button>
+          </Link>
         </div>
 
       </div>
