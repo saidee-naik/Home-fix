@@ -31,11 +31,11 @@ export default function Navbar() {
 
         {/* Right side */}
         <div className="nav-right">
-          <Link href="/provider" className="provider-link">
+          <span className="provider-link">
             Are you a Provider?
-          </Link>
+          </span>
 
-          <Link href="/register" className="register-btn">
+          <Link href="/are-you-a-provider" className="register-btn">
             Register
           </Link>
         </div>
