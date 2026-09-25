@@ -170,45 +170,81 @@ if (existingProvider) {
     );
   }
 }
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    // 1. Connect to MongoDB
     await connectDB();
 
-    // 2. Fetch approved providers
-    const providers = await Provider.find({
-      status: "approved",
-    }).sort({ createdAt: -1 });
+    const { searchParams } = new URL(request.url);
 
-    // 3. Return providers
+    // Search/filter parameters
+    const category = searchParams.get("category");
+    const location = searchParams.get("location");
+
+    // Pagination
+    const page = Math.max(
+      Number(searchParams.get("page")) || 1,
+      1
+    );
+
+    const limit = Math.min(
+      Math.max(Number(searchParams.get("limit")) || 10, 1),
+      50
+    );
+
+    const skip = (page - 1) * limit;
+
+    // Only approved providers
+    const filter: any = {
+      status: "approved",
+    };
+
+    // Category filter
+    if (category) {
+      filter.category = {
+        $regex: category,
+        $options: "i",
+      };
+    }
+
+    // Location filter
+    if (location) {
+      filter.location = {
+        $regex: location,
+        $options: "i",
+      };
+    }
+
+    // Get total number of matching providers
+    const total = await Provider.countDocuments(filter);
+
+    // Get providers
+    const providers = await Provider.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
     return NextResponse.json(
       {
         success: true,
-        count: providers.length,
         providers,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
       },
       { status: 200 }
     );
-} catch (error: any) {
-  console.error("Provider registration error:", error);
+  } catch (error) {
+    console.error("Provider discovery error:", error);
 
-  // MongoDB duplicate key error
-  if (error.code === 11000) {
     return NextResponse.json(
       {
         success: false,
-        message: "A provider with this email already exists",
+        message: "Failed to fetch providers",
       },
-      { status: 409 }
+      { status: 500 }
     );
   }
-
-  return NextResponse.json(
-    {
-      success: false,
-      message: "Failed to register provider",
-    },
-    { status: 500 }
-  );
-}
 }
