@@ -16,6 +16,7 @@ export default function Navbar() {
 
         {/* Navigation */}
         <nav className="nav-links">
+
           <Link href="#services" className="active">
             Find Services
           </Link>
@@ -24,20 +25,23 @@ export default function Navbar() {
             How It Works
           </Link>
 
-          <Link href="#trust">
+          <Link href="#trusted-by-homeowners">
             Trust & Safety
           </Link>
+
         </nav>
 
         {/* Right side */}
         <div className="nav-right">
-          <span className="provider-link">
+
+          <Link href="/provider" className="provider-link">
             Are you a Provider?
           </span>
 
           <Link href="/are-you-a-provider" className="register-btn">
             Register
           </Link>
+
         </div>
 
       </div>

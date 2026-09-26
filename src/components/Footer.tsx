@@ -21,9 +21,9 @@ export default function Footer() {
             </div>
 
             <p>
-              Connecting homeowners with verified local
-              service professionals. Trust, safety,
-              and transparency.
+              Connecting homeowners with verified local service
+              professionals. 
+              Trust, safety, and transparency.
             </p>
 
           </div>
@@ -63,7 +63,7 @@ export default function Footer() {
             </h3>
 
             <a href="#">
-              About Us
+              About HomeFix
             </a>
 
             <a href="#trust">
@@ -71,11 +71,7 @@ export default function Footer() {
             </a>
 
             <a href="#">
-              Support
-            </a>
-
-            <a href="#">
-              Careers
+              Contact Us
             </a>
 
           </div>
