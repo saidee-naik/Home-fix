@@ -6,7 +6,6 @@ export default function Footer() {
 
         <div className="footer-top">
 
-          {/* Brand */}
           <div className="footer-brand">
 
             <div className="logo footer-logo">
@@ -29,7 +28,6 @@ export default function Footer() {
 
           </div>
 
-          {/* Services */}
           <div className="footer-column">
 
             <h3>
@@ -49,12 +47,15 @@ export default function Footer() {
             </a>
 
             <a href="#">
+              Painting
+            </a>
+
+            <a href="#">
               HVAC & Heating
             </a>
 
           </div>
 
-          {/* Company */}
           <div className="footer-column">
 
             <h3>
@@ -65,7 +66,7 @@ export default function Footer() {
               About HomeFix
             </a>
 
-            <a href="#">
+            <a href="#trust">
               Trust & Safety
             </a>
 
@@ -76,8 +77,6 @@ export default function Footer() {
           </div>
 
         </div>
-
-        {/* Bottom */}
 
         <div className="footer-bottom">
 
