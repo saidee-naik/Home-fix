@@ -28,7 +28,10 @@ const stats = [
 
 export default function TrustedStats() {
   return (
-    <section className="trusted-section">
+    <section
+      className="trusted-section"
+      id="trusted-by-homeowners"
+    >
 
       <div className="container">
 
