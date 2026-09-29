@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type Provider = {
-  id: number;
+  id: string | number;
   name: string;
   category: string;
   title: string;
@@ -20,7 +20,6 @@ export default function ProviderCard({
 }: ProviderCardProps) {
   return (
     <div className="provider-card">
-
       <div className="provider-image">
         <div className="provider-placeholder">
           👤
@@ -28,7 +27,6 @@ export default function ProviderCard({
       </div>
 
       <div className="provider-content">
-
         <div className="provider-category">
           {provider.category}
         </div>
@@ -45,7 +43,6 @@ export default function ProviderCard({
         </div>
 
         <div className="provider-bottom">
-
           <strong>
             {provider.price}
           </strong>
@@ -56,11 +53,8 @@ export default function ProviderCard({
           >
             View Details →
           </Link>
-
         </div>
-
       </div>
-
     </div>
   );
 }
