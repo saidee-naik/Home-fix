@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import AdminSidebar from "@/components/admin/adminsidebar";
 import AdminHeader from "@/components/admin/AdminHeader";
 import StatCard from "@/components/admin/StatCard";
@@ -5,7 +10,55 @@ import ProviderRequestsTable from "@/components/admin/ProviderRequestsTable";
 
 import styles from "./dashboard.module.css";
 
+interface ProviderStats {
+  total: number;
+  pending: number;
+  approved: number;
+  rejected: number;
+}
+
 export default function AdminDashboardPage() {
+  const router = useRouter();
+
+  const [stats, setStats] = useState<ProviderStats>({
+    total: 0,
+    pending: 0,
+    approved: 0,
+    rejected: 0,
+  });
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch("/api/admin/providers/stats", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+          router.push("/admin/login");
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch statistics");
+        }
+
+        setStats(data.stats);
+      } catch (error) {
+        console.error("Dashboard stats error:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchStats();
+  }, [router]);
+
   return (
     <div className={styles.adminLayout}>
 
@@ -47,36 +100,36 @@ export default function AdminDashboardPage() {
 
             <StatCard
               title="Total Providers"
-              value={243}
-              change="↑ +12%"
-              description="from last month"
+              value={stats.total}
+              change="Live"
+              description="from database"
               icon="♙"
               type="blue"
             />
 
             <StatCard
               title="Pending Requests"
-              value={23}
-              change="↑ +5%"
-              description="from last week"
+              value={stats.pending}
+              change="Live"
+              description="from database"
               icon="◷"
               type="yellow"
             />
 
             <StatCard
               title="Approved Providers"
-              value={196}
-              change="↑ +18%"
-              description="from last month"
+              value={stats.approved}
+              change="Live"
+              description="from database"
               icon="✓"
               type="green"
             />
 
             <StatCard
               title="Rejected Providers"
-              value={24}
-              change="↑ +2%"
-              description="from last month"
+              value={stats.rejected}
+              change="Live"
+              description="from database"
               icon="×"
               type="red"
             />
