@@ -57,6 +57,11 @@ export default function ProviderRequestsTable() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [addLoading, setAddLoading] = useState(false);
   const [addError, setAddError] = useState("");
+  const [providerImageFile, setProviderImageFile] =
+  useState<File | null>(null);
+
+const [providerImagePreview, setProviderImagePreview] =
+  useState<string | null>(null);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
 
   const [newProvider, setNewProvider] = useState({
@@ -256,6 +261,26 @@ export default function ProviderRequestsTable() {
     try {
       setAddLoading(true);
 
+      let imageUrl = "";
+
+      if (providerImageFile) {
+        const imageFormData = new FormData();
+        imageFormData.append("file", providerImageFile);
+
+        const uploadResponse = await fetch("/api/upload/image", {
+          method: "POST",
+          body: imageFormData,
+        });
+
+        const uploadResult = await uploadResponse.json();
+
+        if (!uploadResponse.ok) {
+          throw new Error(uploadResult.message || "Image upload failed.");
+        }
+
+        imageUrl = uploadResult.imageUrl || "";
+      }
+
       const response = await fetch("/api/admin/providers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -269,7 +294,7 @@ export default function ProviderRequestsTable() {
           experience: Number(newProvider.experience),
           priceMin: Number(newProvider.priceMin),
           priceMax: Number(newProvider.priceMax),
-          imageUrl: newProvider.imageUrl.trim(),
+          imageUrl,
           description: newProvider.description.trim(),
         }),
       });
@@ -287,6 +312,8 @@ export default function ProviderRequestsTable() {
       }
 
       setShowAddModal(false);
+      setProviderImageFile(null);
+      setProviderImagePreview(null);
       setNewProvider({
         name: "",
         phone: "",
@@ -303,7 +330,9 @@ export default function ProviderRequestsTable() {
       await fetchProviders();
     } catch (error) {
       console.error("Add provider error:", error);
-      setAddError("Something went wrong. Please try again.");
+      setAddError(
+        error instanceof Error ? error.message : "Something went wrong. Please try again."
+      );
     } finally {
       setAddLoading(false);
     }
@@ -426,6 +455,13 @@ export default function ProviderRequestsTable() {
               className={styles.addButton}
               onClick={() => {
                 setAddError("");
+
+                if (providerImagePreview) {
+                  URL.revokeObjectURL(providerImagePreview);
+                }
+
+                setProviderImageFile(null);
+                setProviderImagePreview(null);
                 setShowAddModal(true);
               }}
             >
@@ -1297,27 +1333,90 @@ export default function ProviderRequestsTable() {
                     color: "#334155",
                   }}
                 >
-                  Image URL
+                  Provider Photo
                 </label>
+
                 <input
-                  type="text"
-                  value={newProvider.imageUrl}
-                  onChange={(e) =>
-                    setNewProvider({
-                      ...newProvider,
-                      imageUrl: e.target.value,
-                    })
-                  }
-                  placeholder="Optional image URL"
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+
+                    if (!file) {
+                      return;
+                    }
+
+                    if (file.size > 5 * 1024 * 1024) {
+                      setAddError("Image size must be less than 5MB.");
+                      event.target.value = "";
+                      setProviderImageFile(null);
+                      setProviderImagePreview(null);
+                      return;
+                    }
+
+                    const allowedTypes = [
+                      "image/png",
+                      "image/jpeg",
+                      "image/webp",
+                    ];
+
+                    if (!allowedTypes.includes(file.type)) {
+                      setAddError(
+                        "Only PNG, JPG, and WEBP images are allowed."
+                      );
+                      event.target.value = "";
+                      setProviderImageFile(null);
+                      setProviderImagePreview(null);
+                      return;
+                    }
+
+                    setAddError("");
+                    setProviderImageFile(file);
+
+                    if (providerImagePreview) {
+                      URL.revokeObjectURL(providerImagePreview);
+                    }
+
+                    const previewUrl = URL.createObjectURL(file);
+                    setProviderImagePreview(previewUrl);
+                  }}
                   style={{
                     width: "100%",
                     boxSizing: "border-box",
-                    padding: "11px",
+                    padding: "10px",
                     marginTop: "6px",
                     border: "1px solid #cbd5e1",
                     borderRadius: "8px",
+                    background: "#ffffff",
                   }}
                 />
+
+                <small
+                  style={{
+                    display: "block",
+                    marginTop: "6px",
+                    color: "#64748b",
+                    fontSize: "12px",
+                  }}
+                >
+                  PNG, JPG or WEBP • Maximum 5MB
+                </small>
+
+                {providerImagePreview && (
+                  <div style={{ marginTop: "12px" }}>
+                    <img
+                      src={providerImagePreview}
+                      alt="Provider preview"
+                      style={{
+                        width: "90px",
+                        height: "90px",
+                        objectFit: "cover",
+                        borderRadius: "10px",
+                        border: "1px solid #e2e8f0",
+                      }}
+                    />
+                  </div>
+                )}
               </div>
 
               <div style={{ marginTop: "16px" }}>
@@ -1365,7 +1464,15 @@ export default function ProviderRequestsTable() {
                 <button
                   type="button"
                   disabled={addLoading}
-                  onClick={() => setShowAddModal(false)}
+                  onClick={() => {
+                    if (providerImagePreview) {
+                      URL.revokeObjectURL(providerImagePreview);
+                    }
+                    setProviderImageFile(null);
+                    setProviderImagePreview(null);
+                    setAddError("");
+                    setShowAddModal(false);
+                  }}
                   style={{
                     border: "1px solid #cbd5e1",
                     background: "#ffffff",

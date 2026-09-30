@@ -112,63 +112,91 @@ export default function ProviderRegistration() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    // Collect form values
-    const providerData = {
-      name: String(
-        formData.get("fullName") || ""
-      ).trim(),
-
-      phone: String(
-        formData.get("phone") || ""
-      ).trim(),
-
-      email: String(
-        formData.get("email") || ""
-      ).trim(),
-
-      category: String(
-        formData.get("service") || ""
-      ).trim(),
-
-      location: String(
-        formData.get("location") || ""
-      ).trim(),
-
-      experience: Number(
-        formData.get("experience")
-      ),
-
-      priceMin: Number(
-        formData.get("minPrice")
-      ),
-
-      priceMax: Number(
-        formData.get("maxPrice")
-      ),
-
-      description: description.trim(),
-
-      // Image upload is not connected yet.
-      // Cloudinary integration can be added later.
-      imageUrl: "",
-    };
-
     try {
-      // Send data to the Next.js backend API
-      const response = await fetch("/api/providers", {
-        method: "POST",
+      // Get selected profile image
+      const imageFile = formData.get("profileImage");
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+      let imageUrl = "";
 
-        body: JSON.stringify(providerData),
-      });
+      // Upload image to Cloudinary
+      if (imageFile instanceof File && imageFile.size > 0) {
+        const imageFormData = new FormData();
+        imageFormData.append("file", imageFile);
 
-      // Read backend response
+        const uploadResponse = await fetch(
+          "/api/upload/image",
+          {
+            method: "POST",
+            body: imageFormData,
+          }
+        );
+
+        const uploadResult = await uploadResponse.json();
+
+        if (!uploadResponse.ok) {
+          throw new Error(
+            uploadResult.message ||
+              "Image upload failed."
+          );
+        }
+
+        imageUrl = uploadResult.imageUrl;
+      }
+
+      // Collect provider details
+      const providerData = {
+        name: String(
+          formData.get("fullName") || ""
+        ).trim(),
+
+        phone: String(
+          formData.get("phone") || ""
+        ).trim(),
+
+        email: String(
+          formData.get("email") || ""
+        ).trim(),
+
+        category: String(
+          formData.get("service") || ""
+        ).trim(),
+
+        location: String(
+          formData.get("location") || ""
+        ).trim(),
+
+        experience: Number(
+          formData.get("experience")
+        ),
+
+        priceMin: Number(
+          formData.get("minPrice")
+        ),
+
+        priceMax: Number(
+          formData.get("maxPrice")
+        ),
+
+        description: description.trim(),
+
+        // Cloudinary image URL
+        imageUrl: imageUrl,
+      };
+
+      // Send provider data to backend
+      const response = await fetch(
+        "/api/providers",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(providerData),
+        }
+      );
+
       const result = await response.json();
 
-      // Handle backend errors
       if (!response.ok) {
         throw new Error(
           result.message ||
@@ -484,8 +512,7 @@ export default function ProviderRegistration() {
               </div>
 
               <small>
-                Image upload will be connected to Cloudinary
-                in a later step.
+                Your image will be securely uploaded and stored.
               </small>
             </div>
 
