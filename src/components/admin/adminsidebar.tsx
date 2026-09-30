@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "@/app/admin/dashboard/dashboard.module.css";
 
 const menuItems = [
@@ -50,6 +50,22 @@ const bottomItems = [
 
 export default function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("/api/admin/auth/logout", {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        router.push("/admin/login");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <aside className={styles.sidebar}>
@@ -109,13 +125,15 @@ export default function AdminSidebar() {
 
       </nav>
 
-      <Link
-        href="/admin/login"
+      {/* Logout */}
+      <button
+        type="button"
         className={styles.logout}
+        onClick={handleLogout}
       >
         <span>⇥</span>
         Logout
-      </Link>
+      </button>
 
     </aside>
   );

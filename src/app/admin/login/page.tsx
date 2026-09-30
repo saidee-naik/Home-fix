@@ -9,10 +9,11 @@ export default function AdminLoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
@@ -22,14 +23,32 @@ export default function AdminLoginPage() {
       return;
     }
 
-    /*
-      FRONTEND DEMO ONLY
+    try {
+      const response = await fetch("/api/admin/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email,
+          password,
+          rememberMe,
+        }),
+      });
 
-      This does NOT authenticate a real admin.
-      Later, this will call your backend API.
-    */
+      const data = await response.json();
 
-    router.push("/admin/dashboard");
+      if (!response.ok) {
+        setError(data.message || "Invalid email or password.");
+        return;
+      }
+
+      router.push("/admin/dashboard");
+    } catch (error) {
+      console.error("Admin login error:", error);
+      setError("Something went wrong. Please try again.");
+    }
   }
 
   return (
@@ -88,9 +107,7 @@ export default function AdminLoginPage() {
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
@@ -101,16 +118,13 @@ export default function AdminLoginPage() {
           <div className={styles.formOptions}>
 
             <label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
               Remember me
             </label>
-
-            <button
-              type="button"
-              className={styles.forgotButton}
-            >
-              Forgot password?
-            </button>
 
           </div>
 
