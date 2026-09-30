@@ -289,7 +289,7 @@ export default function ProviderRegistration() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  placeholder="9876543210"
+                  placeholder="Call Now"
                   pattern="[6-9][0-9]{9}"
                   maxLength={10}
                   required
