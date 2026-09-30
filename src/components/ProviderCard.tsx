@@ -1,4 +1,8 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+
+import ProviderProfileModal from "./ProviderProfileModal";
 
 type Provider = {
   id: string | number;
@@ -18,43 +22,73 @@ type ProviderCardProps = {
 export default function ProviderCard({
   provider,
 }: ProviderCardProps) {
+  const [showProfile, setShowProfile] =
+    useState(false);
+
   return (
-    <div className="provider-card">
-      <div className="provider-image">
-        <div className="provider-placeholder">
-          👤
+    <>
+      <div className="provider-card">
+
+        <div className="provider-image">
+          <div className="provider-placeholder">
+            👤
+          </div>
         </div>
+
+        <div className="provider-content">
+
+          <div className="provider-category">
+            {provider.category}
+          </div>
+
+          <h3>{provider.name}</h3>
+
+          <p className="provider-title">
+            {provider.title}
+          </p>
+
+          <div className="provider-info">
+
+            <span>
+              📍 {provider.location}
+            </span>
+
+            <span>
+              ⭐ {provider.experience}+ years
+            </span>
+
+          </div>
+
+          <div className="provider-bottom">
+
+            <strong>
+              {provider.price}
+            </strong>
+
+            <button
+              type="button"
+              className="provider-details-button"
+              onClick={() =>
+                setShowProfile(true)
+              }
+            >
+              View Details →
+            </button>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div className="provider-content">
-        <div className="provider-category">
-          {provider.category}
-        </div>
-
-        <h3>{provider.name}</h3>
-
-        <p className="provider-title">
-          {provider.title}
-        </p>
-
-        <div className="provider-info">
-          <span>📍 {provider.location}</span>
-          <span>⭐ {provider.experience}+ years</span>
-        </div>
-
-        <div className="provider-bottom">
-          <strong>
-            {provider.price}
-          </strong>
-
-          <Link
-            href={`/services/${provider.id}`}
-            className="provider-details-button"
-          >
-            View Details →
-          </Link>
-        </div>
-      </div>
-    </div>
+      {showProfile && (
+        <ProviderProfileModal
+          providerId={String(provider.id)}
+          onClose={() =>
+            setShowProfile(false)
+          }
+        />
+      )}
+    </>
   );
 }

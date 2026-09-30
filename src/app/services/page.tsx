@@ -26,7 +26,7 @@ export default function ServicesPage() {
 
   const initialService = searchParams.get("service") || "";
   const initialLocation =
-    searchParams.get("location") || "Margao, Goa";
+    searchParams.get("location") || "";
 
   const [search, setSearch] = useState(initialService);
   const [location, setLocation] = useState(initialLocation);
@@ -218,28 +218,28 @@ export default function ServicesPage() {
       const matchesExperience =
         selectedExperience.length === 0 ||
         selectedExperience.some((range) => {
-          if (range === "1-3") {
+          if (range === "1-3 years") {
             return (
               provider.experience >= 1 &&
               provider.experience <= 3
             );
           }
 
-          if (range === "3-5") {
+          if (range === "3-5 years") {
             return (
               provider.experience > 3 &&
               provider.experience <= 5
             );
           }
 
-          if (range === "5-10") {
+          if (range === "5-10 years") {
             return (
               provider.experience > 5 &&
               provider.experience <= 10
             );
           }
 
-          if (range === "10+") {
+          if (range === "10+ years") {
             return provider.experience > 10;
           }
 

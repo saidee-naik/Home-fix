@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ServiceCardProps {
   icon: string;
   name: string;
@@ -12,10 +14,12 @@ export default function ServiceCard({
   description,
 }: ServiceCardProps) {
   return (
-    <div className="service-card">
-
+    <Link
+      href={`/services?service=${encodeURIComponent(name)}`}
+      className="service-card"
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <div className="service-card-top">
-
         <div className="service-icon">
           {icon}
         </div>
@@ -23,11 +27,9 @@ export default function ServiceCard({
         <span className="service-arrow">
           →
         </span>
-
       </div>
 
       <div className="service-card-content">
-
         <h3>
           {name}
         </h3>
@@ -39,9 +41,7 @@ export default function ServiceCard({
         <p className="professional-count">
           {professionals} professionals
         </p>
-
       </div>
-
-    </div>
+    </Link>
   );
 }
