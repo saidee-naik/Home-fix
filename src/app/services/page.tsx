@@ -17,7 +17,7 @@ type Provider = {
   experience: number;
   location: string;
   price: string;
-  image: string;
+  imageUrl: string;
 };
 
 export default function ServicesPage() {
@@ -125,9 +125,7 @@ export default function ServicesPage() {
 
               price: `₹${provider.priceMin} – ₹${provider.priceMax}`,
 
-              image:
-                provider.imageUrl ||
-                "/providers/default.jpg",
+              imageUrl: provider.imageUrl || "",
             })
           );
 
