@@ -386,6 +386,8 @@ export default function Hero() {
       return;
     }
 
+    if (!selectedService || !selectedLocation) return;
+
     router.push(
       `/services?service=${encodeURIComponent(selectedService)}` +
         `&location=${encodeURIComponent(selectedLocation)}`
