@@ -28,7 +28,7 @@ export default function CTA() {
           </div>
 
           <Link
-            href="/providers"
+            href="/services"
             className="cta-button"
           >
             Find a Professional

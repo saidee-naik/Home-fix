@@ -32,7 +32,7 @@ export default function Navbar() {
         {/* Right side */}
         <div className="nav-right">
 
-          <Link href="/provider" className="provider-link">
+          <span className="provider-link">
             Are you a Provider?
           </Link>
 

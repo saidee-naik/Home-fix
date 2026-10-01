@@ -1,7 +1,12 @@
-
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const goaLocations = [
   "Panaji",
@@ -49,11 +54,66 @@ const serviceCategories = [
 ];
 
 export default function ProviderRegistration() {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImage, setProfileImage] =
+    useState<string | null>(null);
+
   const [description, setDescription] = useState("");
+
   const [submitted, setSubmitted] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Location search state
+  const [locationSearch, setLocationSearch] =
+    useState("");
+
+  const [selectedLocation, setSelectedLocation] =
+    useState("");
+
+  const [showLocationDropdown, setShowLocationDropdown] =
+    useState(false);
+
+  const locationRef = useRef<HTMLDivElement | null>(
+    null
+  );
+
+  // Close location dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (
+      event: MouseEvent
+    ) => {
+      if (
+        locationRef.current &&
+        !locationRef.current.contains(
+          event.target as Node
+        )
+      ) {
+        setShowLocationDropdown(false);
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, []);
+
+  // Filter Goa locations based on what the user types
+  const filteredLocations = goaLocations.filter(
+    (location) =>
+      location
+        .toLowerCase()
+        .includes(locationSearch.toLowerCase())
+  );
 
   // Handle profile image preview
   const handleImageChange = (
@@ -69,8 +129,12 @@ export default function ProviderRegistration() {
     const maxFileSize = 5 * 1024 * 1024;
 
     if (file.size > maxFileSize) {
-      setErrorMessage("Image size must be less than 5MB.");
+      setErrorMessage(
+        "Image size must be less than 5MB."
+      );
+
       event.target.value = "";
+
       return;
     }
 
@@ -85,7 +149,9 @@ export default function ProviderRegistration() {
       setErrorMessage(
         "Only PNG, JPG, and WEBP images are allowed."
       );
+
       event.target.value = "";
+
       return;
     }
 
@@ -98,6 +164,29 @@ export default function ProviderRegistration() {
     setProfileImage(imageUrl);
   };
 
+  // Handle location typing
+  const handleLocationChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
+
+    setLocationSearch(value);
+
+    // Clear previously selected location
+    setSelectedLocation("");
+
+    setShowLocationDropdown(true);
+  };
+
+  // Handle location selection
+  const handleLocationSelect = (
+    location: string
+  ) => {
+    setSelectedLocation(location);
+    setLocationSearch(location);
+    setShowLocationDropdown(false);
+  };
+
   // Submit provider registration
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
@@ -107,68 +196,117 @@ export default function ProviderRegistration() {
     // Reset previous messages
     setSubmitted(false);
     setErrorMessage("");
+
+    // Make sure a valid Goa location is selected
+    if (!goaLocations.includes(selectedLocation)) {
+      setErrorMessage(
+        "Please select a location from the Goa location list."
+      );
+
+      setShowLocationDropdown(true);
+
+      return;
+    }
+
     setIsSubmitting(true);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    // Collect form values
-    const providerData = {
-      name: String(
-        formData.get("fullName") || ""
-      ).trim(),
-
-      phone: String(
-        formData.get("phone") || ""
-      ).trim(),
-
-      email: String(
-        formData.get("email") || ""
-      ).trim(),
-
-      category: String(
-        formData.get("service") || ""
-      ).trim(),
-
-      location: String(
-        formData.get("location") || ""
-      ).trim(),
-
-      experience: Number(
-        formData.get("experience")
-      ),
-
-      priceMin: Number(
-        formData.get("minPrice")
-      ),
-
-      priceMax: Number(
-        formData.get("maxPrice")
-      ),
-
-      description: description.trim(),
-
-      // Image upload is not connected yet.
-      // Cloudinary integration can be added later.
-      imageUrl: "",
-    };
-
     try {
-      // Send data to the Next.js backend API
-      const response = await fetch("/api/providers", {
-        method: "POST",
+      // Get selected profile image
+      const imageFile = formData.get(
+        "profileImage"
+      );
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+      let imageUrl = "";
 
-        body: JSON.stringify(providerData),
-      });
+      // Upload image to Cloudinary
+      if (
+        imageFile instanceof File &&
+        imageFile.size > 0
+      ) {
+        const imageFormData = new FormData();
 
-      // Read backend response
+        imageFormData.append(
+          "file",
+          imageFile
+        );
+
+        const uploadResponse = await fetch(
+          "/api/upload/image",
+          {
+            method: "POST",
+            body: imageFormData,
+          }
+        );
+
+        const uploadResult =
+          await uploadResponse.json();
+
+        if (!uploadResponse.ok) {
+          throw new Error(
+            uploadResult.message ||
+              "Image upload failed."
+          );
+        }
+
+        imageUrl = uploadResult.imageUrl;
+      }
+
+      // Collect provider details
+      const providerData = {
+        name: String(
+          formData.get("fullName") || ""
+        ).trim(),
+
+        phone: String(
+          formData.get("phone") || ""
+        ).trim(),
+
+        email: String(
+          formData.get("email") || ""
+        ).trim(),
+
+        category: String(
+          formData.get("service") || ""
+        ).trim(),
+
+        // Use selected Goa location
+        location: selectedLocation,
+
+        experience: Number(
+          formData.get("experience")
+        ),
+
+        priceMin: Number(
+          formData.get("minPrice")
+        ),
+
+        priceMax: Number(
+          formData.get("maxPrice")
+        ),
+
+        description: description.trim(),
+
+        // Cloudinary image URL
+        imageUrl: imageUrl,
+      };
+
+      // Send provider data to backend
+      const response = await fetch(
+        "/api/providers",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(providerData),
+        }
+      );
+
       const result = await response.json();
 
-      // Handle backend errors
       if (!response.ok) {
         throw new Error(
           result.message ||
@@ -185,6 +323,11 @@ export default function ProviderRegistration() {
       // Reset controlled fields
       setDescription("");
       setProfileImage(null);
+
+      // Reset location
+      setLocationSearch("");
+      setSelectedLocation("");
+      setShowLocationDropdown(false);
 
       console.log(
         "Provider registered successfully:",
@@ -221,9 +364,9 @@ export default function ProviderRegistration() {
           </h1>
 
           <p>
-            Join HomeFix and reach local homeowners in Goa.
-            Showcase your skills, get more projects, and
-            grow your business.
+            Join HomeFix and reach local homeowners in
+            Goa. Showcase your skills, get more projects,
+            and grow your business.
           </p>
         </div>
       </section>
@@ -289,7 +432,7 @@ export default function ProviderRegistration() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  placeholder="9876543210"
+                  placeholder="Call Now"
                   pattern="[6-9][0-9]{9}"
                   maxLength={10}
                   required
@@ -335,14 +478,16 @@ export default function ProviderRegistration() {
                   Select a service
                 </option>
 
-                {serviceCategories.map((service) => (
-                  <option
-                    key={service}
-                    value={service}
-                  >
-                    {service}
-                  </option>
-                ))}
+                {serviceCategories.map(
+                  (service) => (
+                    <option
+                      key={service}
+                      value={service}
+                    >
+                      {service}
+                    </option>
+                  )
+                )}
               </select>
             </div>
 
@@ -352,31 +497,122 @@ export default function ProviderRegistration() {
                 Location in Goa <span>*</span>
               </label>
 
-              <div className="input-with-icon">
-                <span>⌾</span>
+              <div
+                ref={locationRef}
+                style={{
+                  position: "relative",
+                }}
+              >
+                <div className="input-with-icon">
+                  <span>⌾</span>
 
-                <select
-                  id="location"
-                  name="location"
-                  defaultValue=""
-                  required
-                >
-                  <option
-                    value=""
-                    disabled
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={locationSearch}
+                    onChange={
+                      handleLocationChange
+                    }
+                    onFocus={() => {
+                      setShowLocationDropdown(
+                        true
+                      );
+                    }}
+                    placeholder="Type or select your location"
+                    autoComplete="off"
+                    required
+                  />
+
+                  <span
+                    style={{
+                      marginLeft: "auto",
+                      pointerEvents: "none",
+                      fontSize: "16px",
+                    }}
                   >
-                    Select your location
-                  </option>
+                    ▾
+                  </span>
+                </div>
 
-                  {goaLocations.map((location) => (
-                    <option
-                      key={location}
-                      value={location}
-                    >
-                      {location}
-                    </option>
-                  ))}
-                </select>
+                {showLocationDropdown && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 0,
+                      right: 0,
+                      zIndex: 100,
+                      background: "#ffffff",
+                      border: "1px solid #cbd5e1",
+                      borderRadius: "0 0 8px 8px",
+                      maxHeight: "220px",
+                      overflowY: "auto",
+                      boxShadow:
+                        "0 8px 20px rgba(0, 0, 0, 0.12)",
+                    }}
+                  >
+                    {filteredLocations.length >
+                    0 ? (
+                      filteredLocations.map(
+                        (location) => (
+                          <button
+                            key={location}
+                            type="button"
+                            onClick={() =>
+                              handleLocationSelect(
+                                location
+                              )
+                            }
+                            style={{
+                              display: "block",
+                              width: "100%",
+                              padding:
+                                "11px 14px",
+                              border: "none",
+                              background:
+                                selectedLocation ===
+                                location
+                                  ? "#f0fdf4"
+                                  : "#ffffff",
+                              color: "#334155",
+                              textAlign: "left",
+                              cursor: "pointer",
+                              fontSize: "14px",
+                            }}
+                            onMouseEnter={(
+                              event
+                            ) => {
+                              event.currentTarget.style.background =
+                                "#f1f5f9";
+                            }}
+                            onMouseLeave={(
+                              event
+                            ) => {
+                              event.currentTarget.style.background =
+                                selectedLocation ===
+                                location
+                                  ? "#f0fdf4"
+                                  : "#ffffff";
+                            }}
+                          >
+                            {location}
+                          </button>
+                        )
+                      )
+                    ) : (
+                      <div
+                        style={{
+                          padding: "12px 14px",
+                          color: "#64748b",
+                          fontSize: "14px",
+                        }}
+                      >
+                        No Goa location found.
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -410,7 +646,6 @@ export default function ProviderRegistration() {
                   type="number"
                   id="minPrice"
                   name="minPrice"
-                  placeholder="300"
                   min="0"
                   required
                 />
@@ -430,7 +665,6 @@ export default function ProviderRegistration() {
                   type="number"
                   id="maxPrice"
                   name="maxPrice"
-                  placeholder="1000"
                   min="0"
                   required
                 />
@@ -484,15 +718,16 @@ export default function ProviderRegistration() {
               </div>
 
               <small>
-                Image upload will be connected to Cloudinary
-                in a later step.
+                Your image will be securely uploaded and
+                stored.
               </small>
             </div>
 
             {/* Description */}
             <div className="provider-field">
               <label htmlFor="description">
-                Professional Description <span>*</span>
+                Professional Description{" "}
+                <span>*</span>
               </label>
 
               <div className="description-wrapper">
@@ -503,7 +738,9 @@ export default function ProviderRegistration() {
                   maxLength={500}
                   value={description}
                   onChange={(event) =>
-                    setDescription(event.target.value)
+                    setDescription(
+                      event.target.value
+                    )
                   }
                   required
                 />
@@ -544,7 +781,7 @@ export default function ProviderRegistration() {
             >
               {isSubmitting
                 ? "Submitting..."
-                : "Submit Registration"}
+                : "Register"}
 
               {!isSubmitting && (
                 <span>→</span>

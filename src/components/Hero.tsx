@@ -54,10 +54,10 @@ const goaLocations = [
 ];
 
 /** Case-insensitive, trimmed exact-match lookup. */
-function findExactMatch(items: string[], value: string) {
+function findExactMatch(items: string[], value: string): string {
   return items.find(
     (item) => item.toLowerCase() === value.trim().toLowerCase()
-  );
+  ) ?? '';
 }
 
 /* =========================================================
@@ -390,7 +390,7 @@ export default function Hero() {
 
     router.push(
       `/services?service=${encodeURIComponent(selectedService)}` +
-        `&location=${encodeURIComponent(selectedLocation)}`
+      `&location=${encodeURIComponent(selectedLocation)}`
     );
   };
 
