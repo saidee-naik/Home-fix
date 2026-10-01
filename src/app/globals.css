@@ -48,8 +48,9 @@ button {
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
 
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top : 0;
+  z-index: 1000;
 }
 
 .nav-content {
@@ -95,77 +96,125 @@ button {
 
 .nav-links a {
   position: relative;
+
   color: #475569;
   text-decoration: none;
+
   font-size: 14px;
   padding: 8px 0;
-  transition: color 0.2s ease, transform 0.2s ease;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 
+/* =========================
+   PROVIDER TEXT LINK
+========================= */
 
 .provider-link {
-  color: #4f5f75;
-  text-decoration: none;
-}
-
-.provider-link:hover {
-  color: #1f3a64;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  font-size: 13px;
-  color: #64748b;
-}
-
-.register-btn {
   display: inline-block;
-  text-decoration: none;
-  background: #19345d;
-  color: white;
-  padding: 14px 22px;
-  border-radius: 8px;
-  font-weight: 600;
-}
 
-.register-btn:hover {
-  opacity: 0.9;
-}
+  padding: 0;
+  margin: 0;
 
-.provider-link {
-  text-decoration: none;
+  background: transparent;
+  border: none;
+
   color: #475569;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
 }
 
 .provider-link:hover {
   color: #19345d;
 }
 
-/* Hover effect */
+
+/* =========================
+   NAV RIGHT
+========================= */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  font-size: 13px;
+  color: #64748b;
+}
+
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+
+.register-btn {
+  display: inline-block;
+
+  text-decoration: none;
+
+  background: #19345d;
+  color: #ffffff;
+
+  padding: 14px 22px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  transition: opacity 0.2s ease;
+}
+
+.register-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* =========================
+   NAVIGATION HOVER
+========================= */
+
 .nav-links a:hover {
   color: #17294d;
   transform: translateY(-1px);
 }
 
-/* Animated underline */
+
+/* =========================
+   ANIMATED UNDERLINE
+========================= */
+
 .nav-links a::after {
   content: "";
+
   position: absolute;
+
   left: 0;
   bottom: 0;
+
   width: 0;
   height: 2px;
+
   background: #12b981;
+
   transition: width 0.25s ease;
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
+
+
 /* =========================
    HERO
 ========================= */
@@ -184,7 +233,6 @@ button {
 
 .hero-content {
   width: 100%;
-
   text-align: center;
 }
 
@@ -221,6 +269,7 @@ button {
   color: #b3bfd1;
 }
 
+
 /* =========================
    HERO LOCATION SELECT
 ========================= */
@@ -235,8 +284,10 @@ button {
   border: none;
   outline: none;
   background: transparent;
+
   color: #19345d;
   font-size: 16px;
+
   cursor: pointer;
   min-width: 180px;
 }
@@ -249,9 +300,6 @@ button {
   font-size: 18px;
 }
 
-/* =========================
-   SEARCH
-========================= */
 
 /* =========================
    SEARCH
@@ -260,6 +308,7 @@ button {
 .search-box {
   width: 875px;
   max-width: 100%;
+
   height: 72px;
 
   margin: 27px auto 0;
@@ -271,6 +320,7 @@ button {
   background: #ffffff;
   border-radius: 10px;
 }
+
 
 /* Service */
 
@@ -314,6 +364,7 @@ button {
   color: #64748b;
 }
 
+
 /* Location */
 
 .search-location {
@@ -343,11 +394,16 @@ button {
 .hero-trust {
   display: flex;
   justify-content: center;
+
   gap: 25px;
+
   margin-top: 17px;
+
   font-size: 10px;
+
   color: #aebacd;
 }
+
 
 /* Search button */
 
@@ -1379,9 +1435,10 @@ button {
   .hero p {
     font-size: 12px;
   }
-.hero-trust span::first-letter {
-  color: #12b981;
-}
+
+  .hero-trust span::first-letter {
+    color: #12b981;
+  }
 
 
   /* Search */
@@ -1600,76 +1657,106 @@ button {
   }
 
 }
+
+
 /* =========================
    REGISTER PAGE
 ========================= */
 
 .register-page {
   min-height: 100vh;
+
   background: #f5f7fa;
+
   padding: 70px 20px;
 }
 
 .register-container {
   max-width: 600px;
+
   margin: 0 auto;
+
   background: #ffffff;
+
   padding: 45px;
+
   border-radius: 16px;
+
   border: 1px solid #e1e6ed;
+
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 .register-header {
   text-align: center;
+
   margin-bottom: 35px;
 }
 
 .register-header .section-label {
   display: block;
+
   color: #10b981;
+
   font-size: 14px;
   font-weight: 700;
+
   letter-spacing: 1.5px;
+
   margin-bottom: 12px;
 }
 
 .register-header h1 {
   color: #19345d;
+
   font-size: 36px;
+
   margin-bottom: 12px;
 }
 
 .register-header p {
   color: #64748b;
+
   line-height: 1.6;
 }
 
 .register-form {
   display: flex;
+
   flex-direction: column;
+
   gap: 20px;
 }
 
 .form-group {
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
 }
 
 .form-group label {
   color: #19345d;
+
   font-weight: 600;
+
   font-size: 15px;
 }
 
 .form-group input {
   width: 100%;
+
   padding: 14px 16px;
+
   border: 1px solid #d6dce5;
+
   border-radius: 8px;
+
   font-size: 15px;
+
   outline: none;
+
   box-sizing: border-box;
 }
 
@@ -1679,62 +1766,86 @@ button {
 
 .register-submit {
   margin-top: 10px;
+
   padding: 15px;
+
   border: none;
+
   border-radius: 8px;
+
   background: #10b981;
+
   color: white;
+
   font-size: 16px;
+
   font-weight: 700;
+
   cursor: pointer;
 }
 
 .register-submit:hover {
   opacity: 0.9;
 }
-/* =========================/* =========================
+
+
+/* =========================
    SERVICES PAGE
 ========================= */
 
 .services-page {
   min-height: 100vh;
+
   background: #f5f7fa;
+
   padding: 80px 20px;
 }
 
 .services-container {
   max-width: 1100px;
+
   margin: 0 auto;
 }
 
 .services-container .section-label {
   color: #10b981;
+
   font-weight: 700;
+
   letter-spacing: 1.5px;
+
   font-size: 14px;
 }
 
 .services-container h1 {
   color: #19345d;
+
   font-size: 42px;
+
   margin: 12px 0;
 }
 
 .services-subtitle {
   color: #64748b;
+
   font-size: 17px;
 }
 
 .search-result-box {
   margin-top: 40px;
+
   background: white;
+
   border: 1px solid #e1e6ed;
+
   border-radius: 14px;
+
   padding: 35px;
 }
 
 .search-result-box h2 {
   color: #19345d;
+
   margin-bottom: 10px;
 }
 
@@ -1742,44 +1853,61 @@ button {
   color: #64748b;
 }
 
+
 /* =========================================
    PROVIDER REGISTRATION
 ========================================= */
 
 .provider-page {
   min-height: 100vh;
+
   background: #f6f7f9;
 }
+
 
 /* Hero */
 
 .provider-hero {
   background: #1d3157;
+
   color: #ffffff;
+
   text-align: center;
+
   padding: 40px 20px 55px;
 }
 
 .provider-hero-label {
   display: block;
+
   color: #51d5ad;
+
   font-size: 11px;
+
   font-weight: 700;
+
   letter-spacing: 1.5px;
+
   margin-bottom: 10px;
 }
 
 .provider-hero h1 {
   font-size: 32px;
+
   line-height: 1.2;
+
   margin: 0;
 }
 
 .provider-hero p {
   max-width: 650px;
+
   margin: 10px auto 0;
+
   color: #b9c5d7;
+
   font-size: 13px;
+
   line-height: 1.6;
 }
 
@@ -1792,8 +1920,11 @@ button {
 
 .provider-form-container {
   max-width: 950px;
+
   margin: -18px auto 0;
+
   position: relative;
+
   z-index: 2;
 
   background: #ffffff;
@@ -1814,13 +1945,17 @@ button {
 
 .provider-form-header h2 {
   color: #17294d;
+
   font-size: 16px;
+
   margin: 0;
 }
 
 .provider-form-header p {
   margin-top: 4px;
+
   color: #697386;
+
   font-size: 11px;
 }
 
@@ -1829,14 +1964,17 @@ button {
 
 .provider-success {
   margin-bottom: 15px;
+
   padding: 12px 15px;
 
   border-radius: 7px;
 
   background: #eaf8f3;
+
   color: #087f5b;
 
   font-size: 12px;
+
   font-weight: 600;
 }
 
@@ -1849,6 +1987,7 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   column-gap: 20px;
+
   row-gap: 12px;
 }
 
@@ -1867,6 +2006,7 @@ button {
   color: #17294d;
 
   font-size: 10px;
+
   font-weight: 700;
 }
 
@@ -1898,19 +2038,23 @@ button {
 
   box-sizing: border-box;
 
-  transition: border-color 0.2s ease,
-              box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .provider-field input,
 .provider-field select {
   height: 37px;
+
   padding: 0 11px;
 }
 
 .provider-field textarea {
   height: 88px;
+
   resize: vertical;
+
   padding: 10px 11px;
 }
 
@@ -1933,6 +2077,7 @@ button {
   position: absolute;
 
   left: 11px;
+
   top: 50%;
 
   transform: translateY(-50%);
@@ -1954,6 +2099,7 @@ button {
 
 .profile-image-area {
   display: flex;
+
   align-items: stretch;
 
   gap: 8px;
@@ -1961,11 +2107,15 @@ button {
 
 .image-upload-box {
   width: 185px;
+
   height: 86px;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
   border: 1px dashed #cbd5e1;
@@ -1983,23 +2133,29 @@ button {
 
 .image-upload-box:hover {
   border-color: #12b981;
+
   background: #f3fbf8;
 }
 
 .upload-icon {
   font-size: 22px;
+
   color: #64748b;
+
   margin-bottom: 3px;
 }
 
 .image-upload-box strong {
   color: #334155;
+
   font-size: 10px;
 }
 
 .image-upload-box small {
   margin-top: 3px;
+
   color: #94a3b8;
+
   font-size: 8px;
 }
 
@@ -2009,6 +2165,7 @@ button {
 .profile-preview,
 .profile-placeholder {
   width: 92px;
+
   height: 86px;
 
   border-radius: 7px;
@@ -2018,7 +2175,9 @@ button {
 
 .profile-placeholder {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   background: #f1f4f8;
@@ -2037,6 +2196,7 @@ button {
   position: absolute;
 
   right: 10px;
+
   bottom: 7px;
 
   color: #64748b;
@@ -2051,6 +2211,7 @@ button {
   grid-column: 1 / -1;
 
   display: flex;
+
   align-items: center;
 
   gap: 8px;
@@ -2060,6 +2221,7 @@ button {
 
 .provider-terms input {
   width: 16px;
+
   height: 16px;
 
   accent-color: #12b981;
@@ -2069,11 +2231,13 @@ button {
 
 .provider-terms label {
   color: #64748b;
+
   font-size: 9px;
 }
 
 .provider-terms a {
   color: #19345d;
+
   text-decoration: underline;
 }
 
@@ -2096,12 +2260,15 @@ button {
   font-family: inherit;
 
   font-size: 12px;
+
   font-weight: 700;
 
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   gap: 12px;
@@ -2124,7 +2291,9 @@ button {
   grid-column: 1 / -1;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   gap: 7px;
@@ -2138,8 +2307,10 @@ button {
 
 .provider-review span {
   color: #19345d;
+
   font-size: 13px;
 }
+
 
 /* =========================================
    PROVIDER REGISTRATION - MOBILE
@@ -2183,10 +2354,12 @@ button {
 
   .image-upload-box {
     flex: 1;
+
     min-width: 180px;
   }
-
 }
+
+
 /* =========================================
    SEARCH VALIDATION & SUGGESTIONS
 ========================================= */
@@ -2198,11 +2371,13 @@ button {
 
 .search-service-wrapper {
   flex: 1;
+
   min-width: 0;
 }
 
 .search-location-wrapper {
   width: 250px;
+
   flex-shrink: 0;
 }
 
@@ -2213,6 +2388,7 @@ button {
   height: 58px;
 
   display: flex;
+
   align-items: center;
 
   padding: 0 18px;
@@ -2220,12 +2396,15 @@ button {
 
 .search-service input {
   flex: 1;
+
   min-width: 0;
 
   border: none;
+
   outline: none;
 
   font-size: 15px;
+
   color: #334155;
 }
 
@@ -2240,6 +2419,7 @@ button {
   height: 58px;
 
   display: flex;
+
   align-items: center;
 
   gap: 9px;
@@ -2251,9 +2431,11 @@ button {
 
 .search-location input {
   width: 100%;
+
   min-width: 0;
 
   border: none;
+
   outline: none;
 
   background: transparent;
@@ -2271,6 +2453,7 @@ button {
   flex-shrink: 0;
 
   color: #19345d;
+
   font-size: 17px;
 }
 
@@ -2278,6 +2461,7 @@ button {
   flex-shrink: 0;
 
   color: #334155;
+
   font-size: 16px;
 }
 
@@ -2288,7 +2472,9 @@ button {
   position: absolute;
 
   top: calc(100% + 4px);
+
   left: 0;
+
   right: 0;
 
   z-index: 100;
@@ -2328,6 +2514,7 @@ button {
 
 .suggestion-item:hover {
   background: #f1f8f5;
+
   color: #0c9f73;
 }
 
@@ -2346,6 +2533,7 @@ button {
   position: absolute;
 
   top: calc(100% + 8px);
+
   left: 10px;
 
   z-index: 101;
@@ -2360,8 +2548,11 @@ button {
 .suggestion-item:hover,
 .suggestion-item.active {
   background: #f1f8f5;
+
   color: #0c9f73;
 }
+
+
 /* =========================================
    PROVIDER PROFILE MODAL
    HOMEFIX THEME
@@ -2369,12 +2560,15 @@ button {
 
 .provider-profile-overlay {
   position: fixed;
+
   inset: 0;
 
   z-index: 9999;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   padding: 25px;
@@ -2386,6 +2580,7 @@ button {
   position: relative;
 
   width: 900px;
+
   max-width: 100%;
 
   max-height: 90vh;
@@ -2406,13 +2601,17 @@ button {
   position: absolute;
 
   top: 15px;
+
   right: 15px;
 
   width: 30px;
+
   height: 30px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   border: 1px solid #dce2e9;
@@ -2480,6 +2679,7 @@ button {
 
 .provider-profile-image {
   width: 100%;
+
   height: 220px;
 
   overflow: hidden;
@@ -2491,6 +2691,7 @@ button {
 
 .provider-profile-image img {
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
@@ -2737,14 +2938,22 @@ button {
   .provider-profile-image {
     height: 210px;
   }
-
 }
+
+
+/* =========================
+   PROFILE PLACEHOLDER
+========================= */
+
 .provider-profile-placeholder {
   width: 100%;
+
   height: 100%;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   background: #f1f4f8;
