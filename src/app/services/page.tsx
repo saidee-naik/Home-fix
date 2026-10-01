@@ -55,6 +55,8 @@ export default function ServicesPage() {
    */
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
     async function fetchProviders() {
       try {
         setLoading(true);
@@ -87,6 +89,7 @@ export default function ServicesPage() {
           `/api/providers?${params.toString()}`,
           {
             cache: "no-store",
+            signal: controller.signal
           }
         );
 
@@ -128,25 +131,34 @@ export default function ServicesPage() {
               imageUrl: provider.imageUrl || "",
             })
           );
+        if (isMounted) {
+          setProviders(formattedProviders);
+        }
 
-        setProviders(formattedProviders);
-      } catch (error) {
+      } catch (error: any) {
+        if (error.name === "AbortError") return;
         console.error(
           "Failed to fetch providers:",
           error
         );
 
-        setProviders([]);
-
-        setError(
-          "Unable to load service providers."
-        );
+        if (isMounted) {
+          setProviders([]);
+          setError("Unable to load service providers.");
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
+
       }
     }
 
     fetchProviders();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, [initialLocation]);
 
   /*
@@ -448,14 +460,12 @@ export default function ServicesPage() {
                     <p>
                       {loading
                         ? "Loading providers..."
-                        : `Showing ${
-                            filteredProviders.length
-                          } matching ${
-                            filteredProviders.length ===
-                            1
-                              ? "provider"
-                              : "providers"
-                          }`}
+                        : `Showing ${filteredProviders.length
+                        } matching ${filteredProviders.length ===
+                          1
+                          ? "provider"
+                          : "providers"
+                        }`}
                     </p>
 
                   </div>
@@ -516,7 +526,7 @@ export default function ServicesPage() {
                 {!loading &&
                   !error &&
                   filteredProviders.length >
-                    0 && (
+                  0 && (
 
                     <div className="providers-grid">
 
@@ -537,7 +547,7 @@ export default function ServicesPage() {
                 {!loading &&
                   !error &&
                   filteredProviders.length ===
-                    0 && (
+                  0 && (
 
                     <div className="no-results">
 
