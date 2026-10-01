@@ -12,7 +12,7 @@ type Provider = {
   experience: number;
   location: string;
   price: string;
-  image: string;
+  imageUrl: string;
 };
 
 type ProviderCardProps = {
@@ -25,14 +25,31 @@ export default function ProviderCard({
   const [showProfile, setShowProfile] =
     useState(false);
 
+  const [imageError, setImageError] =
+    useState(false);
+
+  const hasValidImage =
+    provider.imageUrl && !imageError;
+
   return (
     <>
       <div className="provider-card">
 
         <div className="provider-image">
-          <div className="provider-placeholder">
-            👤
-          </div>
+          {hasValidImage ? (
+            <img
+              src={provider.imageUrl}
+              alt={provider.name}
+              className="provider-photo"
+              onError={() => {
+                setImageError(true);
+              }}
+            />
+          ) : (
+            <div className="provider-placeholder">
+              👤
+            </div>
+          )}
         </div>
 
         <div className="provider-content">
