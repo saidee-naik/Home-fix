@@ -1,83 +1,114 @@
-const stats = [
+"use client";
+
+import "./TrustedStats.css";
+
+const reviews = [
   {
-    icon: "🔧",
-    value: "1,000+",
-    label: "Customers Served",
+    name: "Rohan Naik",
+    location: "Ponda",
+    service: "Plumbing",
+    initials: "RN",
+    color: "green",
+    review:
+      "The plumber arrived on time and fixed the leakage quickly. Very professional and polite. Highly recommended!",
   },
   {
-    icon: "◇",
-    value: "500+",
-    label: "Services Completed",
+    name: "Priya Fernandes",
+    location: "Margao",
+    service: "Cleaning",
+    initials: "PF",
+    color: "blue",
+    review:
+      "Booked a house cleaning service and the team did an amazing job. My home looks so much better now!",
   },
   {
-    icon: "✓",
-    value: "100+",
-    label: "Verified Professionals",
+    name: "Amit Kamat",
+    location: "Panjim",
+    service: "Electrical",
+    initials: "AK",
+    color: "orange",
+    review:
+      "The electrician was knowledgeable and fixed the issue the same day. Fair pricing and great communication.",
   },
   {
-    icon: "★",
-    value: "4.8★",
-    label: "Average Customer Rating",
-  },
-  {
-    icon: "◎",
-    value: "98%",
-    label: "Customer Satisfaction",
+    name: "Sneha Dessai",
+    location: "Mapusa",
+    service: "Painting",
+    initials: "SD",
+    color: "purple",
+    review:
+      "Got my living room painted through HomeFix. The work quality was excellent and completed on time.",
   },
 ];
 
 export default function TrustedStats() {
   return (
-    <section
-      className="trusted-section"
-      id="trusted-by-homeowners"
-    >
+    <section className="reviews-section">
+      <div className="reviews-container">
 
-      <div className="container">
-
-        <div className="section-heading">
-
-          <span className="section-label">
-            TRUSTED BY HOMEOWNERS
+        {/* Section Heading */}
+        <div className="reviews-heading">
+          <span className="reviews-label">
+            WHAT OUR CUSTOMERS SAY
           </span>
 
-          <h2>
-            Trusted by homeowners across Goa
-          </h2>
+          <h2>Trusted by homeowners across Goa</h2>
 
           <p>
-            Verified local professionals. Simple pricing. Direct contact.
+            Real experiences from people who used HomeFix to get
+            their home projects done.
           </p>
-
         </div>
 
-        <div className="stats-grid">
+        {/* Customer Reviews */}
+        <div className="reviews-grid">
+          {reviews.map((review) => (
+            <div className="review-card" key={review.name}>
 
-          {stats.map((stat) => (
-            <div
-              className="stat"
-              key={stat.label}
-            >
-
-              <div className="stat-icon">
-                {stat.icon}
+              {/* Quote Icon */}
+              <div className={`quote-icon ${review.color}`}>
+                “
               </div>
 
-              <strong>
-                {stat.value}
-              </strong>
+              {/* Review */}
+              <p className="review-text">
+                “{review.review}”
+              </p>
 
-              <span>
-                {stat.label}
-              </span>
+              {/* Rating */}
+              <div className="review-stars">
+                ★ ★ ★ ★ ★
+              </div>
+
+              <div className="review-divider" />
+
+              {/* Customer Details */}
+              <div className="review-bottom">
+
+                <div
+                  className={`customer-avatar ${review.color}`}
+                >
+                  {review.initials}
+                </div>
+
+                <div className="customer-info">
+                  <h4>{review.name}</h4>
+                  <span>{review.location}</span>
+                </div>
+
+                <div
+                  className={`service-badge ${review.color}`}
+                >
+                  {review.service}
+                </div>
+
+              </div>
 
             </div>
           ))}
-
         </div>
 
       </div>
-
     </section>
   );
 }
