@@ -2,111 +2,157 @@
 
 import "./TrustedStats.css";
 
+
 const reviews = [
   {
-    name: "Rohan Naik",
-    location: "Ponda",
+    name: "Olivia Bennett",
+    image: "https://i.pravatar.cc/150?img=09",
+    rating: 4.8,
+    date: "2 days ago",
     service: "Plumbing",
-    initials: "RN",
-    color: "green",
     review:
-      "The plumber arrived on time and fixed the leakage quickly. Very professional and polite. Highly recommended!",
+      "I recently hired a plumber through HomeFix to fix a leaky faucet, and I couldn't be happier with the results! The service was quick, affordable, and professional.",
   },
   {
-    name: "Priya Fernandes",
-    location: "Margao",
-    service: "Cleaning",
-    initials: "PF",
-    color: "blue",
+    name: "James Anderson",
+    image: "https://i.pravatar.cc/150?img=12",
+    rating: 4.5,
+    date: "5 days ago",
+    service: "Carpentry",
     review:
-      "Booked a house cleaning service and the team did an amazing job. My home looks so much better now!",
+      "I needed custom shelves for my living room and found an excellent carpenter through HomeFix. The attention to detail was impressive and the final result looks amazing.",
   },
   {
-    name: "Amit Kamat",
-    location: "Panjim",
+    name: "Sophia Martinez",
+    image: "https://i.pravatar.cc/150?img=44",
+    rating: 4.2,
+    date: "1 week ago",
     service: "Electrical",
-    initials: "AK",
-    color: "orange",
     review:
-      "The electrician was knowledgeable and fixed the issue the same day. Fair pricing and great communication.",
+      "The electrician arrived on time, explained the problem clearly, and completed the work safely. The entire booking process through HomeFix was simple.",
   },
   {
-    name: "Sneha Dessai",
-    location: "Mapusa",
-    service: "Painting",
-    initials: "SD",
-    color: "purple",
+    name: "Ethan Wilson",
+    image: "https://i.pravatar.cc/150?img=33",
+    rating: 4.7,
+    date: "1 week ago",
+    service: "Cleaning",
     review:
-      "Got my living room painted through HomeFix. The work quality was excellent and completed on time.",
+      "I booked a deep cleaning service and the team did a fantastic job. They were thorough and left my home looking brand new.",
+  },
+  {
+    name: "Ava Thompson",
+    image: "https://i.pravatar.cc/150?img=43",
+    rating: 4.4,
+    date: "2 weeks ago",
+    service: "Home Repair",
+    review:
+      "HomeFix made it easy to find a reliable professional. Communication was good and the service was completed exactly as expected.",
   },
 ];
 
-export default function TrustedStats() {
+function Stars({ rating }: { rating: number }) {
   return (
-    <section className="reviews-section">
-      <div className="reviews-container">
+    <div className="rating">
+      <span className="stars">★★★★★</span>
+      <span className="rating-number">{rating.toFixed(1)}</span>
+    </div>
+  );
+}
 
-        {/* Section Heading */}
-        <div className="reviews-heading">
-          <span className="reviews-label">
-            WHAT OUR CUSTOMERS SAY
-          </span>
+export default function Reviews() {
+  return (
+    <section id="trust-safety" className="reviews-section">
 
-          <h2>Trusted by homeowners across Goa</h2>
+      {/* Header */}
+      <div className="reviews-top">
+
+        <div>
+          <div className="reviews-brand">
+  <span className="reviews-icon">✓</span>
+
+  <div className="reviews-brand-text">
+    <strong>Trust & Safety</strong>
+    <span>Verified & reliable professionals</span>
+  </div>
+</div>
+
+          <h2>What Our Customers Say</h2>
 
           <p>
-            Real experiences from people who used HomeFix to get
-            their home projects done.
+            Real feedback from homeowners who booked professionals
+            through HomeFix.
           </p>
         </div>
 
-        {/* Customer Reviews */}
-        <div className="reviews-grid">
-          {reviews.map((review) => (
-            <div className="review-card" key={review.name}>
+        <div className="overall-rating">
+          <div className="overall-number">4.6</div>
 
-              {/* Quote Icon */}
-              <div className={`quote-icon ${review.color}`}>
-                “
-              </div>
+          <div>
+            <div className="overall-stars">★★★★★</div>
+            <span>128 customer reviews</span>
+          </div>
+        </div>
 
-              {/* Review */}
-              <p className="review-text">
-                “{review.review}”
-              </p>
+      
 
-              {/* Rating */}
-              <div className="review-stars">
-                ★ ★ ★ ★ ★
-              </div>
+      </div>
 
-              <div className="review-divider" />
+      {/* Reviews */}
+      <div className="reviews-grid">
 
-              {/* Customer Details */}
-              <div className="review-bottom">
+        {/* Summary card */}
+        <div className="review-summary">
 
-                <div
-                  className={`customer-avatar ${review.color}`}
-                >
-                  {review.initials}
-                </div>
+          <div className="summary-icon">✦</div>
 
-                <div className="customer-info">
-                  <h4>{review.name}</h4>
-                  <span>{review.location}</span>
-                </div>
+          <h3>Trusted by Homeowners</h3>
 
-                <div
-                  className={`service-badge ${review.color}`}
-                >
-                  {review.service}
-                </div>
+          <p>
+            HomeFix connects homeowners with reliable professionals
+            for everyday home services.
+          </p>
 
+          <div className="summary-rating">
+            <strong>4.6</strong>
+            <span>★★★★★</span>
+          </div>
+
+          <small>Based on 128 reviews</small>
+
+        </div>
+
+        {/* Review cards */}
+        {reviews.map((review) => (
+          <div className="review-card" key={review.name}>
+
+            <div className="review-user">
+
+              <img
+                src={review.image}
+                alt={review.name}
+              />
+
+              <div>
+                <h3>{review.name}</h3>
+
+                <span className="review-date">
+                  {review.date}
+                </span>
               </div>
 
             </div>
-          ))}
-        </div>
+
+            <Stars rating={review.rating} />
+
+            <span className="service-tag">
+              {review.service}
+            </span>
+
+            <p>{review.review}</p>
+
+          </div>
+        ))}
 
       </div>
     </section>
