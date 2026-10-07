@@ -247,7 +247,7 @@ export default function ProviderRegistration() {
         if (!uploadResponse.ok) {
           throw new Error(
             uploadResult.message ||
-              "Image upload failed."
+            "Image upload failed."
           );
         }
 
@@ -310,7 +310,7 @@ export default function ProviderRegistration() {
       if (!response.ok) {
         throw new Error(
           result.message ||
-            "Provider registration failed."
+          "Provider registration failed."
         );
       }
 
@@ -432,7 +432,7 @@ export default function ProviderRegistration() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  placeholder="Call Now"
+                  placeholder="Enter 10-digit phone number"
                   pattern="[6-9][0-9]{9}"
                   maxLength={10}
                   required
@@ -553,7 +553,7 @@ export default function ProviderRegistration() {
                     }}
                   >
                     {filteredLocations.length >
-                    0 ? (
+                      0 ? (
                       filteredLocations.map(
                         (location) => (
                           <button
@@ -572,7 +572,7 @@ export default function ProviderRegistration() {
                               border: "none",
                               background:
                                 selectedLocation ===
-                                location
+                                  location
                                   ? "#f0fdf4"
                                   : "#ffffff",
                               color: "#334155",
@@ -591,7 +591,7 @@ export default function ProviderRegistration() {
                             ) => {
                               event.currentTarget.style.background =
                                 selectedLocation ===
-                                location
+                                  location
                                   ? "#f0fdf4"
                                   : "#ffffff";
                             }}
@@ -646,7 +646,10 @@ export default function ProviderRegistration() {
                   type="number"
                   id="minPrice"
                   name="minPrice"
-                  min="0"
+                  placeholder="e.g., 300"
+                  min="1"
+                  max="100000"
+                  step="1"
                   required
                 />
               </div>
@@ -665,7 +668,10 @@ export default function ProviderRegistration() {
                   type="number"
                   id="maxPrice"
                   name="maxPrice"
-                  min="0"
+                  placeholder="e.g., 1500"
+                  min="1"
+                  max="100000"
+                  step="1"
                   required
                 />
               </div>

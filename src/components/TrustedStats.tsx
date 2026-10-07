@@ -1,3 +1,8 @@
+"use client";
+
+import "./TrustedStats.css";
+
+
 const reviews = [
   {
     name: "Olivia Bennett",
@@ -150,7 +155,6 @@ export default function Reviews() {
         ))}
 
       </div>
-
     </section>
   );
 }
