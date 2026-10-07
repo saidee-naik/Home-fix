@@ -34,7 +34,7 @@ export default function Navbar() {
 
           <span className="provider-link">
             Are you a Provider?
-          </Link>
+          </span>
 
           <Link href="/are-you-a-provider" className="register-btn">
             Register
