@@ -1,0 +1,491 @@
+/* =========================================================
+   HOMEFIX
+   HOW IT WORKS
+========================================================= */
+
+.how-it-works {
+  width: 100%;
+  padding: 72px 6%;
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.how-it-works-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 58px 50px 48px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.how-it-works-header {
+  text-align: center;
+
+  max-width: 650px;
+
+  margin: 0 auto 48px;
+}
+
+
+.section-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: #059669;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+
+.how-it-works-header h2 {
+  margin: 0;
+
+  color: #172554;
+
+  font-size: clamp(34px, 4vw, 42px);
+
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+
+.how-it-works-header p {
+  margin: 12px 0 0;
+
+  color: #64748b;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+.steps-wrapper {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 34px;
+}
+
+
+.step-item {
+  position: relative;
+
+  text-align: center;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   STEP VISUAL
+========================================================= */
+
+.step-visual {
+  position: relative;
+
+  width: fit-content;
+
+  margin: 0 auto 22px;
+
+  z-index: 2;
+}
+
+
+.step-icon-box {
+  width: 76px;
+  height: 76px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: #ecfdf5;
+
+  color: #047857;
+
+  border: 1px solid #d1fae5;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   SECOND ICON — UPLOADED IMAGE
+========================================================= */
+
+.compare-profile-icon {
+  width: 25px;
+  height: 25px;
+
+  display: block;
+
+  object-fit: contain;
+
+  /* Keeps the uploaded icon clean */
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.step-number {
+  position: absolute;
+
+  top: -13px;
+  right: -13px;
+
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #047857;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 12px rgba(4, 120, 87, 0.20);
+
+  z-index: 3;
+}
+
+
+/* =========================================================
+   STEP CONTENT
+========================================================= */
+
+.step-content {
+  max-width: 310px;
+
+  margin: 0 auto;
+}
+
+
+.step-content h3 {
+  margin: 0 0 9px;
+
+  color: #172554;
+
+  font-size: 19px;
+
+  font-weight: 750;
+
+  line-height: 1.3;
+}
+
+
+.step-content p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   CONNECTING LINE
+========================================================= */
+
+.step-connector {
+  position: absolute;
+
+  top: 38px;
+
+  left: calc(50% + 58px);
+
+  width: calc(100% - 116px);
+
+  height: 1px;
+
+  border-top: 1px dashed #cbd5e1;
+
+  z-index: 1;
+}
+
+
+/*
+   Keep icon and number above connector.
+*/
+
+.step-visual {
+  z-index: 2;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.how-it-works-action {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 42px;
+}
+
+
+.how-it-works-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-width: 215px;
+
+  padding: 14px 24px;
+
+  border-radius: 10px;
+
+  background: #047857;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.how-it-works-button span {
+  font-size: 20px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+.how-it-works-button:hover {
+  background: #065f46;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(4, 120, 87, 0.18);
+}
+
+
+.how-it-works-button:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .how-it-works {
+    padding: 55px 5%;
+  }
+
+
+  .how-it-works-container {
+    padding: 48px 30px;
+  }
+
+
+  .steps-wrapper {
+    gap: 18px;
+  }
+
+
+  .step-content h3 {
+    font-size: 17px;
+  }
+
+
+  .step-content p {
+    font-size: 13px;
+  }
+
+
+  .step-connector {
+    left: calc(50% + 50px);
+
+    width: calc(100% - 100px);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .how-it-works {
+    padding: 45px 18px;
+  }
+
+
+  .how-it-works-container {
+    padding: 40px 22px;
+
+    border-radius: 16px;
+  }
+
+
+  .how-it-works-header {
+    margin-bottom: 40px;
+  }
+
+
+  .how-it-works-header h2 {
+    font-size: 32px;
+  }
+
+
+  .how-it-works-header p {
+    font-size: 14px;
+  }
+
+
+  .steps-wrapper {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+  }
+
+
+  .step-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    text-align: left;
+  }
+
+
+  .step-visual {
+    flex-shrink: 0;
+
+    margin: 0;
+  }
+
+
+  .step-icon-box {
+    width: 62px;
+
+    height: 62px;
+
+    border-radius: 15px;
+  }
+
+
+  /* Uploaded image on mobile */
+
+  .compare-profile-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+
+  .step-number {
+    width: 29px;
+
+    height: 29px;
+
+    top: -8px;
+
+    right: -8px;
+  }
+
+
+  .step-content {
+    max-width: none;
+
+    padding-top: 3px;
+  }
+
+
+  .step-content h3 {
+    font-size: 17px;
+  }
+
+
+  .step-content p {
+    font-size: 13px;
+  }
+
+
+  .step-connector {
+    display: none;
+  }
+
+
+  .how-it-works-action {
+    margin-top: 35px;
+  }
+
+
+  .how-it-works-button {
+    width: 100%;
+  }
+}

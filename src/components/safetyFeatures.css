@@ -1,0 +1,571 @@
+
+
+
+
+/* =========================================================
+   HOMEFIX
+   WHY HOMEFIX
+========================================================= */
+
+.why-homefix {
+  width: 100%;
+
+  padding: 80px 6%;
+
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.why-homefix-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1.05fr
+    0.95fr;
+
+  align-items: center;
+
+  gap: 70px;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.why-homefix-content {
+  max-width: 650px;
+}
+
+
+.why-homefix-label {
+  display: inline-block;
+
+  margin-bottom: 14px;
+
+  color: #059669;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+
+.why-homefix-content h2 {
+  margin: 0;
+
+  color: #172554;
+
+  font-size: clamp(36px, 4vw, 48px);
+
+  line-height: 1.12;
+
+  letter-spacing: -1.5px;
+
+  font-weight: 800;
+}
+
+
+.why-homefix-description {
+  max-width: 620px;
+
+  margin: 18px 0 32px;
+
+  color: #64748b;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.why-features {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 25px 35px;
+}
+
+
+.why-feature {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+
+.why-feature-icon {
+  width: 42px;
+
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid #d1fae5;
+
+  border-radius: 10px;
+
+  background: #ecfdf5;
+
+  color: #059669;
+}
+
+
+.why-feature-content h3 {
+  margin: 0 0 4px;
+
+  color: #172554;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+
+  font-weight: 750;
+}
+
+
+.why-feature-content p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   TRUST VISUAL
+========================================================= */
+
+.trust-visual {
+  position: relative;
+
+  min-height: 410px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   MAIN PROVIDER CARD
+========================================================= */
+
+.trust-provider-card {
+  position: relative;
+
+  width: min(100%, 470px);
+
+  min-height: 275px;
+
+  box-sizing: border-box;
+
+  padding: 38px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1e3768,
+      #17365f
+    );
+
+  color: white;
+
+  box-shadow:
+    0 25px 50px rgba(15, 42, 82, 0.20);
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.provider-avatar {
+  width: 58px;
+
+  height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  border-radius: 50%;
+
+  background: rgba(147, 197, 253, 0.22);
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   PROVIDER INFORMATION
+========================================================= */
+
+.provider-information h3 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 22px;
+
+  line-height: 1.25;
+
+  font-weight: 800;
+}
+
+
+.provider-information p {
+  margin: 4px 0 0;
+
+  color: #dbeafe;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   PROVIDER DETAILS
+========================================================= */
+
+.provider-details {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+
+  margin-top: 25px;
+}
+
+
+.provider-details span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #dbeafe;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.provider-details svg {
+  color: #bfdbfe;
+}
+
+
+/* =========================================================
+   VERIFIED BADGE
+========================================================= */
+
+.verified-badge {
+  width: fit-content;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 20px;
+
+  padding: 8px 13px;
+
+  border-radius: 50px;
+
+  background: #ecfdf5;
+
+  color: #047857;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+========================================================= */
+
+.trust-floating-card {
+  position: absolute;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 130px;
+
+  padding: 18px 20px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 13px;
+
+  background: white;
+
+  box-shadow:
+    0 16px 35px rgba(15, 23, 42, 0.10);
+
+  z-index: 4;
+}
+
+
+.trust-floating-card strong {
+  color: #172554;
+
+  font-size: 23px;
+
+  line-height: 1;
+}
+
+
+.trust-floating-card span {
+  color: #64748b;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   TOP FLOATING CARD
+========================================================= */
+
+.trust-floating-top {
+  top: 18px;
+
+  right: -10px;
+}
+
+
+/* =========================================================
+   BOTTOM FLOATING CARD
+========================================================= */
+
+.trust-floating-bottom {
+  bottom: 15px;
+
+  left: -15px;
+}
+
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.trust-caption {
+  position: absolute;
+
+  right: 40px;
+
+  bottom: -8px;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .why-homefix {
+    padding: 65px 5%;
+  }
+
+
+  .why-homefix-container {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+  }
+
+
+  .why-homefix-content {
+    max-width: 750px;
+
+    margin: 0 auto;
+  }
+
+
+  .trust-visual {
+    max-width: 650px;
+
+    width: 100%;
+
+    margin: 0 auto;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .why-homefix {
+    padding: 55px 18px;
+  }
+
+
+  .why-homefix-container {
+    gap: 40px;
+  }
+
+
+  .why-homefix-content h2 {
+    font-size: 34px;
+
+    letter-spacing: -1px;
+  }
+
+
+  .why-homefix-description {
+    font-size: 14px;
+
+    margin-bottom: 28px;
+  }
+
+
+  .why-features {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+
+  .trust-visual {
+    min-height: 360px;
+  }
+
+
+  .trust-provider-card {
+    width: calc(100% - 40px);
+
+    min-height: 250px;
+
+    padding: 28px;
+
+    border-radius: 17px;
+  }
+
+
+  .trust-floating-top {
+    top: 0;
+
+    right: -2px;
+  }
+
+
+  .trust-floating-bottom {
+    bottom: 0;
+
+    left: -2px;
+  }
+
+
+  .trust-caption {
+    right: 20px;
+
+    bottom: -20px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+  .why-homefix-content h2 {
+    font-size: 30px;
+  }
+
+
+  .trust-provider-card {
+    width: 100%;
+
+    padding: 25px;
+  }
+
+
+  .trust-floating-card {
+    min-width: 105px;
+
+    padding: 13px 15px;
+  }
+
+
+  .trust-floating-card strong {
+    font-size: 19px;
+  }
+
+
+  .trust-floating-card span {
+    font-size: 8px;
+  }
+
+
+  .provider-details {
+    gap: 16px;
+  }
+}
