@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./global.css";
+import "./servicePage.css";
 
 export const metadata: Metadata = {
   title: "HomeFix",

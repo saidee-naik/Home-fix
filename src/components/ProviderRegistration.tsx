@@ -208,12 +208,24 @@ export default function ProviderRegistration() {
       return;
     }
 
-    setIsSubmitting(true);
+   const form = event.currentTarget;
+const formData = new FormData(form);
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
+// Get price values
+const minPrice = Number(formData.get("minPrice"));
+const maxPrice = Number(formData.get("maxPrice"));
 
-    try {
+// Check maximum price against minimum price
+if (maxPrice < minPrice) {
+  setErrorMessage(
+    "Maximum price cannot be less than minimum price."
+  );
+  return;
+}
+
+setIsSubmitting(true);
+
+try {
       // Get selected profile image
       const imageFile = formData.get(
         "profileImage"
@@ -643,15 +655,27 @@ export default function ProviderRegistration() {
                 <span>₹</span>
 
                 <input
-                  type="number"
-                  id="minPrice"
-                  name="minPrice"
-                  placeholder="e.g., 300"
-                  min="1"
-                  max="100000"
-                  step="1"
-                  required
-                />
+  type="number"
+  id="minPrice"
+  name="minPrice"
+  placeholder="e.g., 300"
+  min="1"
+  max="100000"
+  step="1"
+  required
+  onInvalid={(event) => {
+    const input = event.currentTarget;
+
+    if (input.validity.rangeUnderflow) {
+      input.setCustomValidity(
+        "Price must be greater than 0."
+      );
+    }
+  }}
+  onInput={(event) => {
+    event.currentTarget.setCustomValidity("");
+  }}
+/>
               </div>
             </div>
 
@@ -665,15 +689,27 @@ export default function ProviderRegistration() {
                 <span>₹</span>
 
                 <input
-                  type="number"
-                  id="maxPrice"
-                  name="maxPrice"
-                  placeholder="e.g., 1500"
-                  min="1"
-                  max="100000"
-                  step="1"
-                  required
-                />
+  type="number"
+  id="maxPrice"
+  name="maxPrice"
+  placeholder="e.g., 1500"
+  min="1"
+  max="100000"
+  step="1"
+  required
+  onInvalid={(event) => {
+    const input = event.currentTarget;
+
+    if (input.validity.rangeUnderflow) {
+      input.setCustomValidity(
+        "Price must be greater than 0."
+      );
+    }
+  }}
+  onInput={(event) => {
+    event.currentTarget.setCustomValidity("");
+  }}
+/>
               </div>
             </div>
 
