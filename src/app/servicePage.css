@@ -518,3 +518,441 @@
     font-size: 21px;
   }
 }
+
+/* =========================================================
+   PROVIDER PROFILE MODAL
+========================================================= */
+
+.provider-profile-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.provider-profile-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.provider-profile-close {
+  position: absolute;
+
+  top: 12px;
+  right: 14px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-size: 24px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+.provider-profile-close:hover {
+  background: #f1f5f9;
+  color: #17294d;
+}
+
+/* =========================================================
+   PROFILE LAYOUT
+========================================================= */
+
+.provider-profile-layout {
+  display: grid;
+
+  grid-template-columns: 220px 1fr;
+
+  min-height: 450px;
+}
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.provider-profile-left {
+  padding: 28px 22px;
+
+  background: #f8fafc;
+
+  border-right: 1px solid #e2e8f0;
+}
+
+.provider-profile-label {
+  display: block;
+
+  margin-bottom: 16px;
+
+  color: #12b981;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+.provider-profile-image {
+  width: 100%;
+  height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  background: #e9eef5;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.provider-profile-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.provider-profile-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 65px;
+}
+
+.provider-profile-left h2 {
+  margin: 0 0 5px;
+
+  color: #17294d;
+
+  font-size: 20px;
+
+  line-height: 1.2;
+}
+
+.provider-profile-role {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.provider-profile-divider {
+  height: 1px;
+
+  margin: 18px 0;
+
+  background: #e2e8f0;
+}
+
+.provider-profile-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.provider-profile-info p {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+.provider-profile-info .provider-available {
+  color: #16a34a;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.provider-profile-right {
+  padding: 30px 32px;
+
+  overflow-y: auto;
+
+  color: #334155;
+}
+
+.provider-profile-right section {
+  margin-bottom: 24px;
+}
+
+.provider-profile-right h3 {
+  margin: 0 0 7px;
+
+  color: #17294d;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+.provider-profile-right p {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.provider-profile-right ul {
+  margin: 8px 0 0;
+
+  padding-left: 18px;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.provider-profile-price {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #17294d;
+
+  font-size: 18px;
+}
+
+.provider-profile-note {
+  margin-top: 4px !important;
+
+  color: #94a3b8 !important;
+
+  font-size: 10px !important;
+}
+
+/* =========================================================
+   DIRECT CONTACT
+========================================================= */
+
+.provider-contact-box {
+  margin-top: 8px;
+
+  padding: 14px 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+}
+
+.provider-contact-header {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  margin-bottom: 10px;
+}
+
+.provider-contact-header strong {
+  color: #17294d;
+
+  font-size: 12px;
+}
+
+.provider-contact-header span {
+  color: #94a3b8;
+
+  font-size: 10px;
+}
+
+.provider-contact-button {
+  display: block;
+
+  width: 100%;
+
+  padding: 10px 14px;
+
+  background: #17294d;
+
+  color: #ffffff;
+
+  border-radius: 7px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  transition: background 0.2s ease;
+}
+
+.provider-contact-button:hover {
+  background: #12b981;
+}
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
+
+.provider-profile-state {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  text-align: center;
+}
+
+.provider-profile-state h2 {
+  margin: 0 0 8px;
+
+  color: #17294d;
+
+  font-size: 20px;
+}
+
+.provider-profile-state p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.provider-profile-action {
+  margin-top: 18px;
+
+  padding: 9px 18px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #17294d;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .provider-profile-overlay {
+    padding: 15px;
+  }
+
+  .provider-profile-modal {
+    max-height: 92vh;
+
+    overflow-y: auto;
+  }
+
+  .provider-profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .provider-profile-left {
+    border-right: none;
+
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .provider-profile-image {
+    height: 200px;
+  }
+
+  .provider-profile-right {
+    padding: 24px;
+  }
+}
+
+.provider-error {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+
+  color: #dc2626;
+
+  font-size: 14px;
+  font-weight: 600;
+}
