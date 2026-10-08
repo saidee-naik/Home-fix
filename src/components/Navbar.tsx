@@ -25,9 +25,7 @@ export default function Navbar() {
             How It Works
           </Link>
 
-          <Link href="#trusted-by-homeowners">
-            Trust & Safety
-          </Link>
+          <a href="#trust-safety">Trust & Safety</a>
 
         </nav>
 
