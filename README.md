@@ -200,42 +200,7 @@ Home-fix/
 └── README.md
 
 
----
 
-Getting Started
-
-1. Clone the repository
-
-git clone https://github.com/saidee-naik/Home-fix.git
-cd Home-fix
-
-2. Install dependencies
-
-npm install
-
-3. Configure environment variables
-
-Create a .env.local file:
-
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-
-Do not commit .env.local or expose credentials publicly.
-
-4. Run the development server
-
-npm run dev
-
-Open:
-
-http://localhost:3000
-
-5. Create a production build
-
-npm run build
-
-
----
 
 Development
 
@@ -313,30 +278,3 @@ UI improvements
 
 
 
----
-
-Licence 
-
-This project is developed as part of a BCA Full Stack internship project.
-
-### Why I'd choose this version
-
-This is more like a **real engineering README** because it documents:
-
-- **What the product does**
-- **Who uses it**
-- **Features by role**
-- **Technology stack**
-- **Architecture**
-- **API endpoints**
-- **Database model**
-- **Project structure**
-- **Setup instructions**
-- **Git workflow**
-- **Validation/security**
-- **Deployment**
-- **Current project status**
-
-And importantly, it doesn't contain unnecessary things like a long introduction, generic Next.js documentation, or random test JSON.
-
-**One thing I would change before committing:** verify the `GET /api/providers/:id` endpoint actually exists in your current code. Your README should document only APIs that your team has actually implemented.
